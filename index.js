@@ -14,10 +14,10 @@ module.exports = function Relog(dispatch) {
   })
 
   // Grab the user list the first time the client sees the lobby
-  dispatch.hookOnce('S_GET_USER_LIST', 9, event => updatePositions(event.characters))
+  dispatch.hookOnce('S_GET_USER_LIST', 14, event => updatePositions(event.characters))
 
   dispatch.hook('C_DELETE_USER', 'raw', () =>
-    dispatch.hookOnce('S_GET_USER_LIST', 9, event => updatePositions(event.characters))
+    dispatch.hookOnce('S_GET_USER_LIST', 14, event => updatePositions(event.characters))
   )
 
   // Update positions on reorder
@@ -48,7 +48,7 @@ module.exports = function Relog(dispatch) {
   function getCharacterId(name) {
     return new Promise((resolve, reject) => {
       // request handler, resolves with character's playerId
-      const userListHook = dispatch.hookOnce('S_GET_USER_LIST', 9, event => {
+      const userListHook = dispatch.hookOnce('S_GET_USER_LIST', 14, event => {
         name = name.toLowerCase()
         let index = (name === 'nx')? ++curr_char : parseInt(name)
         if (index && index > event.characters.length) index = 1
@@ -82,7 +82,7 @@ module.exports = function Relog(dispatch) {
       dispatch.toClient('S_RETURN_TO_LOBBY', 1, {})
 
       // the server is not ready yet, displaying "Loading..." as char names
-      userListHook = dispatch.hookOnce('S_GET_USER_LIST', 9, event => {
+      userListHook = dispatch.hookOnce('S_GET_USER_LIST', 14, event => {
         event.characters.forEach(char => char.name = 'Loading...')
         return true
       })

@@ -1,11 +1,6 @@
 {
-  "files": {
-    "index.js": "d0381164881e103d5b23f1b49190b51442cf79bd0f22070d4ac7f777e25c411d",
-    "module.json": "9a6a06fb34480683be58a513c97ab4757aa544d39def3952c23efce740ae8199",
-    "README.md": "7f5bd1b71f25be323526967d737df476cea27e60ef39f641669a1913cc4ff272"
-  },
-    "defs": {
-    "S_GET_USER_LIST": 9,
+  "defs": {
+    "S_GET_USER_LIST": 14,
     "C_GET_USER_LIST": 1,
     "C_RETURN_TO_LOBBY": 1,
     "S_RETURN_TO_LOBBY": 1,
@@ -13,5 +8,10 @@
     "C_SELECT_USER": 1,
     "C_CHANGE_USER_LOBBY_SLOT_ID": 1,
     "C_DELETE_USER": 1
+  },
+  "files": {
+    "index.js": "4c49b27d24fd90d7ca4a6556dd3c59c117c7918148e5b51ecea3931cc5d76c1c",
+    "module.json": "9a6a06fb34480683be58a513c97ab4757aa544d39def3952c23efce740ae8199",
+    "README.md": "7f5bd1b71f25be323526967d737df476cea27e60ef39f641669a1913cc4ff272"
   }
 }
