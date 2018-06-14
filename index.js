@@ -14,14 +14,14 @@ module.exports = function Relog(dispatch) {
   })
 
   // Grab the user list the first time the client sees the lobby
-  dispatch.hookOnce('S_GET_USER_LIST', 14, event => updatePositions(event.characters))
+  dispatch.hook('S_GET_USER_LIST', 14, event => updatePositions(event.characters))
 
   dispatch.hook('C_DELETE_USER', 'raw', () =>
     dispatch.hookOnce('S_GET_USER_LIST', 14, event => updatePositions(event.characters))
   )
 
   // Update positions on reorder
-  dispatch.hook('C_CHANGE_USER_LOBBY_SLOT_ID', event => {
+  dispatch.hook('C_CHANGE_USER_LOBBY_SLOT_ID', 1, event => {
     updatePositions(event.characters)
     console.log('[relog] Character positions updated')
   })
@@ -64,7 +64,7 @@ module.exports = function Relog(dispatch) {
       setTimeout(() => {
         if (userListHook) dispatch.unhook(userListHook)
         reject(new Error('[relog] C_GET_USER_LIST request timed out'))
-      }, 5000)
+      }, 6000)
 
       // request the character list
       dispatch.toServer('C_GET_USER_LIST', 1, {})
@@ -97,6 +97,6 @@ module.exports = function Relog(dispatch) {
     setTimeout(() => {
       for (const hook of [prepareLobbyHook, lobbyHook, userListHook])
         if (hook) dispatch.unhook(hook)
-    }, 15000)
+    }, 16000)
   }
 }
