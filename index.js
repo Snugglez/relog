@@ -1,38 +1,30 @@
 module.exports = function Relog(mod) {
   let characters = []
-  let charIndex = -1
+  let position = -1
 
   mod.command.add('relog', arg => {
     if (arg === 'nx') {
-      if (++charIndex === characters.length)
-        charIndex = 0
+      if (++position > characters.length)
+        position = 1
     } else if (/^\d+$/.test(arg)) {
-      const nextCharIndex = Number(arg)
-      if (nextCharIndex >= characters.length) {
-        mod.command.message(`Not found ${nextCharIndex}th character`)
+      const nextPosition = Number(arg)
+      if (nextPosition > characters.length) {
+        mod.command.message(`Not found ${nextPosition}th character`)
         return
       } else {
-        charIndex = nextCharIndex - 1
+        position = nextPosition
       }
     } else {
-      let nextCharIndex = -1
-
-      for (let i=0; i<characters.length; i++) {
-        if (characters[i].name.toLowerCase() === arg.toLowerCase()) {
-          nextCharIndex = i
-          break
-        }
-      }
-
-      if (nextCharIndex < 0) {
+      const found = characters.find(char => char.name.toLowerCase() === arg.toLowerCase())
+      if (found) {
+        position = found.position
+      } else {
         mod.command.message(`Not found '${arg}'`)
         return
-      } else {
-        charIndex = nextCharIndex
       }
     }
 
-    relog(characters[charIndex].id)
+    relog()
   })
 
   // Grab the user list the first time the client sees the lobby
@@ -42,15 +34,10 @@ module.exports = function Relog(mod) {
 
   // Keep track of current char for relog nx
   mod.hook('C_SELECT_USER', 1, event => {
-    for (let i=0; i<characters.length; i++) {
-      if (characters[i].id === event.id) {
-        charIndex = i
-        break
-      }
-    }
+    position = characters.find(char => char.id === event.id).position
   })
   
-  function relog(id) {
+  function relog() {
     mod.toServer('C_RETURN_TO_LOBBY', 1, {})
     let lobbyHook
 
@@ -60,7 +47,10 @@ module.exports = function Relog(mod) {
 
       // the server is ready to relog to a new character
       lobbyHook = mod.hookOnce('S_RETURN_TO_LOBBY', 1, () => {
-        process.nextTick(() => mod.toServer('C_SELECT_USER', 1, {id: id,unk: 0}))
+        process.nextTick(() => {
+          const charId = characters.find(char => char.position === position)
+          mod.toServer('C_SELECT_USER', 1, {id: charId,unk: 0})
+        })
       })
     })
 
