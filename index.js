@@ -3,6 +3,11 @@ module.exports = function Relog(mod) {
   let position = -1
 
   mod.command.add('relog', arg => {
+    if (!mod.game.me.alive || mod.game.me.status !== 0) {
+      mod.command.message(`isn't state you can relog`)
+      return
+    }
+
     if (arg === 'nx') {
       if (++position > characters.length)
         position = 1
@@ -56,10 +61,9 @@ module.exports = function Relog(mod) {
 
     // hook timeout, in case something goes wrong
     setTimeout(() => {
-      for (const hook of [prepareLobbyHook, lobbyHook]) {
+      for (const hook of [prepareLobbyHook, lobbyHook])
         if (hook)
           mod.unhook(hook)
-      }
     }, 16000)
   }
 }
