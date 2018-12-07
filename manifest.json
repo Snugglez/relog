@@ -1,17 +1,13 @@
 {
-  "defs": {
-    "S_GET_USER_LIST": 14,
-    "C_GET_USER_LIST": 1,
-    "C_RETURN_TO_LOBBY": 1,
-    "S_RETURN_TO_LOBBY": 1,
-    "S_PREPARE_RETURN_TO_LOBBY": 1,
-    "C_SELECT_USER": 1,
-    "C_CHANGE_USER_LOBBY_SLOT_ID": 1,
-    "C_DELETE_USER": 1
-  },
-  "files": {
-    "index.js": "35ab3f48ccb1dca6c2e3de533773bd08ecec066cf4c818d7d2d21da30cba4856",
-    "module.json": "9a6a06fb34480683be58a513c97ab4757aa544d39def3952c23efce740ae8199",
-    "README.md": "7f5bd1b71f25be323526967d737df476cea27e60ef39f641669a1913cc4ff272"
-  }
+	"files": {
+		"index.js": "ad8dd459a36ae13ddc61669439f78c674448792f8e5c9436c65fd015aed0e60c",
+		"module.json": "ce2afafc210390d2b0cad858c01f5918c7bf525be2f44e62d1abefcff6db9c07"
+	},
+	"defs": {
+		"C_RETURN_TO_LOBBY": 1,
+		"C_SELECT_USER": 1,
+		"S_GET_USER_LIST": 14,
+		"S_PREPARE_RETURN_TO_LOBBY": 1,
+		"S_RETURN_TO_LOBBY": 1
+	}
 }

@@ -1,3 +1,11 @@
 {
-  "servers": ["https://raw.githubusercontent.com/Snugglez/relog/master/"]
+	"disableAutoUpdate": false,
+	"name": "relog",
+	"author": "valkyr1e",
+	"description": "",
+	"version": "1.0",
+	"options": {
+		"niceName": "Relog"
+	},
+	"servers": ["https://raw.githubusercontent.com/valkyr1e-tera/relog/master/"]
 }
