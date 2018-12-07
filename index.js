@@ -48,8 +48,8 @@ module.exports = function Relog(mod) {
       // the server is ready to relog to a new character
       lobbyHook = mod.hookOnce('S_RETURN_TO_LOBBY', 1, () => {
         process.nextTick(() => {
-          const charId = characters.find(char => char.position === position)
-          mod.toServer('C_SELECT_USER', 1, {id: charId,unk: 0})
+          const charId = characters.find(char => char.position === position).id
+          mod.toServer('C_SELECT_USER', 1, {id: charId, unk: 0})
         })
       })
     })
