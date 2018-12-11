@@ -1,7 +1,7 @@
 {
 	"files": {
 		"index.js": "f3753c648f04e82ab5316911914edd75a6726e45e3246c220bb47c2490ac7128",
-		"module.json": "ce2afafc210390d2b0cad858c01f5918c7bf525be2f44e62d1abefcff6db9c07"
+		"module.json": "45b5d988c3033a94b4595704f11ee51f5b23d8748f72da1ae750ae9505896620"
 	},
 	"defs": {
 		"C_RETURN_TO_LOBBY": 1,
