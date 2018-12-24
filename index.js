@@ -13,20 +13,16 @@ module.exports = function Relog(mod) {
         position = 1
     } else if (/^\d+$/.test(arg)) {
       const nextPosition = Number(arg)
-      if (nextPosition > characters.length) {
-        mod.command.message(`Not found ${nextPosition}th character`)
-        return
-      } else {
+      if (nextPosition > characters.length)
+        return mod.command.message(`Not found ${nextPosition}th character`)
+      else
         position = nextPosition
-      }
     } else {
       const found = characters.find(char => char.name.toLowerCase() === arg.toLowerCase())
-      if (found) {
+      if (found)
         position = found.position
-      } else {
-        mod.command.message(`Not found '${arg}'`)
-        return
-      }
+      else
+        return mod.command.message(`Not found '${arg}'`)
     }
 
     relog()
@@ -43,18 +39,16 @@ module.exports = function Relog(mod) {
   })
   
   function relog() {
-    mod.toServer('C_RETURN_TO_LOBBY', 1, {})
-    let lobbyHook
-
+    mod.send('C_RETURN_TO_LOBBY', 1, {})
+    let prepareLobbyHook, lobbyHook
     // make sure that the client is able to log out
-    const prepareLobbyHook = mod.hookOnce('S_PREPARE_RETURN_TO_LOBBY', 1, () => {
-      mod.toClient('S_RETURN_TO_LOBBY', 1, {})
+    prepareLobbyHook = mod.hookOnce('S_PREPARE_RETURN_TO_LOBBY', 1, () => {
+      mod.send('S_RETURN_TO_LOBBY', 1, {})
 
       // the server is ready to relog to a new character
       lobbyHook = mod.hookOnce('S_RETURN_TO_LOBBY', 1, () => {
-        process.nextTick(() => {
-          const charId = characters.find(char => char.position === position).id
-          mod.toServer('C_SELECT_USER', 1, {id: charId, unk: 0})
+        setImmediate(() => {
+          mod.send('C_SELECT_USER', 1, { id: characters.find(char => char.position === position).id })
         })
       })
     })
