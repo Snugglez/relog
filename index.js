@@ -3,7 +3,7 @@ module.exports = function Relog(mod) {
   let position = -1
 
   mod.command.add('relog', arg => {
-    if (!mod.game.me.alive || mod.game.me.status !== 0) {
+    if (!mod.game.me.alive) {
       mod.command.message(`isn't state you can relog`)
       return
     }
