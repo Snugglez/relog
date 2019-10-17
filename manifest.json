@@ -6,7 +6,7 @@
 	"defs": {
 		"C_RETURN_TO_LOBBY": 1,
 		"C_SELECT_USER": 1,
-		"S_GET_USER_LIST": 16,
+		"S_GET_USER_LIST": 17,
 		"S_PREPARE_RETURN_TO_LOBBY": 1,
 		"S_RETURN_TO_LOBBY": 1
 	}

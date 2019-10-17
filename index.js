@@ -29,7 +29,7 @@ module.exports = function Relog(mod) {
   })
 
   // Grab the user list the first time the client sees the lobby
-  mod.hook('S_GET_USER_LIST', 16, event => {
+  mod.hook('S_GET_USER_LIST', 17, event => {
     characters = event.characters
   })
 
