@@ -1,13 +1,12 @@
 {
 	"files": {
 		"README.md": "08498ef61e453d383b158c2148bdf6b3622172529c761a756321d086f65bc050",
-		"index.js": "580d8090450bb0c8af63d5e45a25485e384202ed624b6435bbdd6ac5ee993b0e",
-		"module.json": "732d90f96fc00195c70ad6e16fb7d3f03ca10bfcb52c76b1b842c334193b7f93"
+		"index.js": "580d8090450bb0c8af63d5e45a25485e384202ed624b6435bbdd6ac5ee993b0e"
 	},
 	"defs": {
 		"C_RETURN_TO_LOBBY": 1,
 		"C_SELECT_USER": 1,
-		"S_GET_USER_LIST": [17,18],
+		"S_GET_USER_LIST": 18,
 		"S_PREPARE_RETURN_TO_LOBBY": 1,
 		"S_RETURN_TO_LOBBY": 1
 	}
