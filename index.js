@@ -29,7 +29,7 @@ module.exports = function Relog(mod) {
   })
 
   // Grab the user list the first time the client sees the lobby
-  mod.hook('S_GET_USER_LIST', 17, event => {
+  mod.hook('S_GET_USER_LIST', 18, event => {
     characters = event.characters
   })
 
@@ -37,7 +37,7 @@ module.exports = function Relog(mod) {
   mod.hook('C_SELECT_USER', 1, event => {
     position = characters.find(char => char.id === event.id).position
   })
-  
+
   function relog() {
     mod.send('C_RETURN_TO_LOBBY', 1, {})
     let prepareLobbyHook, lobbyHook
