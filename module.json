@@ -2,6 +2,7 @@
 	"disableAutoUpdate": false,
 	"name": "relog",
 	"author": "valkyr1e / Snug / wuaw / TerableCoder",
+	"donationUrl": "https://play.google.com/store/apps/details?id=com.CarvedGames.SD",
 	"description": "Switch character fast",
 	"version": "1.0",
 	"servers": ["https://raw.githubusercontent.com/Snugglez/relog/master/"]
